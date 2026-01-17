@@ -1,42 +1,28 @@
-# Vanya
+# Vanya 🤖
 
-Personal assistant with a webhook-based architecture. Adapters for different input sources (Telegram, email, etc.) feed into a unified agent core.
+A modular AI assistant framework with a skills system — inspired by [Clawdbot](https://github.com/clawdbot/clawdbot).
 
-## Architecture
-
-```
-webhooks/
-  └── telegram.py    # Telegram adapter
-  └── email.py       # (future) Email adapter
-agent/
-  └── core.py        # Agent logic (LLM, tools, etc.)
-main.py              # FastAPI server
-```
-
-## Setup
+## Quick Start
 
 ```bash
-pip install -r requirements.txt
-```
-
-## Running
-
-```bash
+pnpm install
 export TELEGRAM_BOT_TOKEN="your-token"
-python main.py
+pnpm dev
 ```
 
-## Setting up Telegram Webhook
+## Roadmap
 
-After deploying, set your webhook URL:
+- [x] Basic Telegram bot (grammY)
+- [ ] Skills system
+- [ ] AI agent integration
+- [ ] Email channel
+- [ ] Session management
 
-```bash
-curl "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/setWebhook?url=https://your-domain.com/telegram/webhook"
-```
+## Tech Stack
 
-## Adding New Adapters
+- TypeScript + VoidZero (tsdown, vitest)
+- grammY for Telegram
 
-1. Create a new file in `webhooks/` (e.g., `email.py`)
-2. Define a FastAPI router that parses incoming requests
-3. Convert to `Message` format and call `agent.process()`
-4. Register the router in `main.py`
+## License
+
+MIT
